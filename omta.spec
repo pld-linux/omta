@@ -45,7 +45,7 @@ OMTA has the following features:
 
 %description -l pl
 OMTA jest narzêdziem SMTP który umo¿liwia ludziom bez sta³ego dostêpu
-do sieci kolejkowaæ pocztê na dysku, i wysy³aæ j± do swojego serwera
+do sieci kolejkowaæ pocztê na dysku i wysy³aæ j± do swojego serwera
 SMTP kiedy tylko s± online.
 
 OMTA ma nastêpuj±ce cechy:
@@ -53,7 +53,7 @@ OMTA ma nastêpuj±ce cechy:
 - Mo¿e przesy³aæ listy do innego serwera SMTP
 - Mo¿e te¿ dostarczaæ lokalnie pocztê (przez procmaila lub podobne)
 - Ma wbudowany serwer SMTP dla lokalnej maszyny
-- U¿ytkonicy mog± (bezpiecznie!) ustawiaæ ich w³asn± konfiguracjê,
+- U¿ytkownicy mog± (bezpiecznie!) ustawiaæ ich w³asn± konfiguracjê,
   w³±czaj±c w to adresy From
 - Zbudowany w oparciu o zasadê K.I.S.S ("Keep It Simple, Stupid!")
 
