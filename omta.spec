@@ -72,7 +72,7 @@ Setup tcp/25 on localhost with omta-smtp.
 %description smtp -l pl
 Pakiet w³±czaj±cy omta-smtp na porcie tcp/25 dla tej maszyny.
 
-%prep -q
+%prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
