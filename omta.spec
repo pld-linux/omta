@@ -14,6 +14,7 @@ Patch2:		%{name}-omta.conf_path.patch
 URL:		http://omta.runlevel.net
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 Provides:	smtpdaemon
 Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,7 +80,7 @@ install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}}
 
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
-mv omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/omta.conf
+mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/omta.conf
 
 gzip -9nf FAQ README AUTHORS CHANGES
 
