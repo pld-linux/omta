@@ -1,0 +1,21 @@
+--- omta-0.51/configure.in.orig	Fri Oct  4 17:19:18 2002
++++ omta-0.51/configure.in	Fri Oct  4 17:20:50 2002
+@@ -98,10 +98,10 @@
+ 			/usr/include/dirent.h,
+ 			mailer_cv_scandir_const=yes,
+ 			mailer_cv_scandir_const=no)),
+-	LIBOBJS="$LIBOBJS scandir.o")
++	AC_LIBOBJ(scandir))
+ 
+ AC_CHECK_FUNCS(getopt_long, ,
+-	LIBOBJS="$LIBOBJS getopt.o getopt1.o")
++	[AC_LIBOBJ(getopt), AC_LIBOBJ(getopt1)])
+ AC_CHECK_FUNC(herror,
+ 	AC_MSG_RESULT(using libc's herror),
+ 	AC_CHECK_LIB(resolv,herror))
+@@ -197,5 +197,4 @@
+ AC_SUBST(SETUID)
+ AC_SUBST(SETGID)
+ 
+-AC_SUBST(LIBOBJS)
+ AC_OUTPUT(doc/Makefile doc/omta.1 doc/omta.conf.5 doc/etrnquery.1 lib/Makefile src/Makefile Makefile omta.conf.dist, echo timestamp > stamp-h)
