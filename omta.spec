@@ -58,6 +58,18 @@ OMTA ma nastêpuj±ce cechy:
   w³±czaj±c w to adresy From
 - Zbudowany w oparciu o zasadê K.I.S.S ("Keep It Simple, Stupid!")
 
+%package smtp
+Summary:    Omta smtp local server
+Summary(pl):    Lokalny serwer smtp omta
+Group:		Networking/Daemons
+Requires: rc-inetd
+
+%description smtp
+Setup tcp/25 on localhost with omta-smtp.
+
+%description smtp -l pl
+W³±cz omta-smtp na porce tcp/25 dla tej maszyny.
+
 %prep -q
 %setup -q
 %patch0 -p1
@@ -89,7 +101,19 @@ install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}}
 
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
+ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/in.smtpd
 mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/omta.conf
+
+cat > $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/rc-inetd/smtpd << EOF
+SERVICE_NAME=smtp
+SOCK_TYPE=stream
+PROTOCOL=tcp
+PORT=25
+FLAGS=nowait
+USER=root
+SERVER=tcpd
+DAEMON=/usr/sbin/in.smtpd
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -105,3 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/omta.conf
 %dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
+
+%files -p smtp
+%attr(755,root,root) %{_sbindir}/in.smtpd
+%attr(755,root,root) %{_sysconfdir}/sysconfig/rc-inetd/smtpd
