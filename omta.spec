@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	7
+Release:	8
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -17,6 +17,15 @@ BuildRequires:	automake
 BuildRequires:	gettext-devel
 Provides:	smtpdaemon
 Obsoletes:	smtpdaemon
+Obsoletes:	exim
+Obsoletes:	masqmail
+Obsoletes:	postfix
+Obsoletes:	qmail
+Obsoletes:	sendmail
+Obsoletes:	sendmail-cf
+Obsoletes:	sendmail-doc
+Obsoletes:	smail
+Obsoletes:	zmailer
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
