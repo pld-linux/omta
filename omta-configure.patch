@@ -5,11 +5,11 @@
  			mailer_cv_scandir_const=yes,
  			mailer_cv_scandir_const=no)),
 -	LIBOBJS="$LIBOBJS scandir.o")
-+	AC_LIBOBJ(scandir))
++	[AC_LIBOBJ(scandir)])
  
  AC_CHECK_FUNCS(getopt_long, ,
 -	LIBOBJS="$LIBOBJS getopt.o getopt1.o")
-+	[AC_LIBOBJ(getopt), AC_LIBOBJ(getopt1)])
++	[AC_LIBOBJ(getopt) AC_LIBOBJ(getopt1)])
  AC_CHECK_FUNC(herror,
  	AC_MSG_RESULT(using libc's herror),
  	AC_CHECK_LIB(resolv,herror))
