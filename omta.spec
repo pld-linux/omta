@@ -66,17 +66,17 @@ OMTA ma nastêpuj±ce cechy:
 %patch3 -p1
 
 %build
-rm -f missing
-gettextize --copy --force
-aclocal
-autoheader
-autoconf
-automake -a -c -f
-(cd libgetconf
-rm -f missing
-aclocal
-autoconf
-automake -a -c)
+rm -f {,libgetconf/}missing
+%{__gettextize}
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
+%{__automake}
+cd libgetconf
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+cd ..
 %configure \
 	--with-queuepath=%{_spooldir}
 %{__make}
