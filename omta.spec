@@ -69,7 +69,7 @@ gettextize --copy --force
 aclocal
 autoheader
 autoconf
-automake -a -c
+automake -a -c -f
 (cd libgetconf
 rm -f missing
 aclocal
