@@ -56,7 +56,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make DESTDIR=$RPM_BUILD_ROOT install
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 install -d $RPM_BUILD_ROOT/var/omta/queue
 install -d $RPM_BUILD_ROOT%{_libdir}
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
