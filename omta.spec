@@ -68,12 +68,12 @@ rm -f missing
 gettextize --copy --force
 aclocal
 autoheader
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 (cd libgetconf
 rm -f missing
 aclocal
-autoconf
+%{__autoconf}
 automake -a -c)
 %configure \
 	--with-queuepath=%{_spooldir}
