@@ -5,14 +5,16 @@ Version:	0.51
 Release:	12
 License:	GPL
 Group:		Networking/Daemons
-Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
+#Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	5a07f592292dce29b584d9745beb30ce
 Source1:	%{name}.inetd
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-%{name}.conf_path.patch
 Patch3:		%{name}-configure.patch
-URL:		http://omta.runlevel.net/
+# Homepage/domain no longer exists
+#URL:		http://omta.runlevel.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 Provides:	smtpdaemon
