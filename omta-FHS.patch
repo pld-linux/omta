@@ -1,0 +1,11 @@
+--- omta-0.51/configure.in	Mon Apr 17 21:24:53 2000
++++ omta-0.51-p/configure.in	Sat Apr 29 19:22:13 2000
+@@ -134,6 +134,8 @@
+ 		[mailer_cv_queuepath=no
+ 		if test -d /var/spool; then
+ 			mailer_cv_queuepath=/var/spool/omtaqueue
++		elif test -d /var; then
++			mailer_cv_queuepath=/var/omta/queue
+ 		elif test -d /usr/spool; then
+ 			mailer_cv_queuepath=/usr/spool/omtaqueue
+ 		fi])
