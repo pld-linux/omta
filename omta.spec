@@ -48,7 +48,6 @@ OMTA ma nastêpuj±ce cechy:
 %patch0 -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 aclocal
 autoconf
 automake
@@ -65,8 +64,7 @@ install -d $RPM_BUILD_ROOT{/var/omta/queue,%{_libdir}}
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 mv omta.conf.dist omta.conf
 
-gzip -9nf FAQ README AUTHORS CHANGES omta.conf \
-	$RPM_BUILD_ROOT/%{_mandir}/man*/*
+gzip -9nf FAQ README AUTHORS CHANGES omta.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
