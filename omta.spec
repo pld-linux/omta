@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	11
+Release:	12
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
@@ -119,7 +119,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
-%dir %{_sysconfdir}
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/mail/omta.conf
 %dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
