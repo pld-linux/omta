@@ -5,7 +5,7 @@ Version:	0.51
 Release:	1
 Vendor:		Wouter Coene <wottie@dds.nl>
 URL:		http://huizen.dds.nl/~wottie/omta/
-Source0:	%{name}-%{version}.tar.gz
+Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
