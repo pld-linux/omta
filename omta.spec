@@ -13,6 +13,7 @@ URL:		http://omta.runlevel.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 Provides:	smtpdaemon
+Obsoletes:      smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
