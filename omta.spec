@@ -115,12 +115,13 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc FAQ README AUTHORS CHANGES
+%dir %attr(770,root,mail) %{_spooldir}
+%dir %{_sysconfdir}/mail
 %attr(2755,root,mail) %{_bindir}/omta
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/mail/omta.conf
-%dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
 
 %files smtp
