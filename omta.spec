@@ -2,13 +2,14 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	9
+Release:	10
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-omta.conf_path.patch
+Patch3:		%{name}-configure.patch
 URL:		http://omta.runlevel.net
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -62,18 +63,19 @@ OMTA ma nastêpuj±ce cechy:
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 rm -f missing
-%{__gettextize}
+gettextize --copy --force
 aclocal
 autoheader
-%{__autoconf}
-%{__automake}
+autoconf
+automake -a -c -f
 (cd libgetconf
 rm -f missing
 aclocal
-%{__autoconf}
+autoconf
 automake -a -c)
 %configure \
 	--with-queuepath=%{_spooldir}
@@ -89,14 +91,12 @@ ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
 mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/omta.conf
 
-gzip -9nf FAQ README AUTHORS CHANGES
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc FAQ README AUTHORS CHANGES
 %attr(2755,root,mail) %{_bindir}/omta
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
