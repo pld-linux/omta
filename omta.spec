@@ -58,7 +58,7 @@ OMTA ma nastêpuj±ce cechy:
   w³±czaj±c w to adresy From
 - Zbudowany w oparciu o zasadê K.I.S.S ("Keep It Simple, Stupid!")
 
-%prep -q
+%prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
