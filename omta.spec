@@ -18,7 +18,7 @@ Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
-%define		_sysconfdir	/etc
+%define		_sysconfdir	/etc/mail
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
@@ -66,7 +66,6 @@ aclocal
 autoconf
 automake -a -c)
 %configure \
-	--sysconfdir=%{_sysconfdir} \
 	--with-queuepath=%{_spooldir}
 %{__make}
 
@@ -92,6 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
+%dir %{_sysconfdir}
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/omta.conf
 %dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
