@@ -1,32 +1,34 @@
---- ./omta.conf.dist.in.org	Sun Sep  9 14:30:08 2001
-+++ ./omta.conf.dist.in	Sun Sep  9 14:41:31 2001
-@@ -5,21 +5,26 @@
+diff -burN omta-0.51.orig/omta.conf.dist.in omta-0.51/omta.conf.dist.in
+--- omta-0.51.orig/omta.conf.dist.in	2004-10-21 22:10:57.646437360 +0200
++++ omta-0.51/omta.conf.dist.in	2004-10-21 22:12:22.142591992 +0200
+@@ -4,25 +4,25 @@
+ #
  
  # The name we tell other machines (defaults to canonical name)
- #HostName		@HOSTNAME@.@DOMAIN@
-+#HostName		HOSTNAME.your.domain.pl
+-#HostName		@HOSTNAME@.@DOMAIN@
++#HostName		hostname.example.com
  
  # your local queue directory
  QueueDirectory		@CONF_QUEUE@
  
  # your SMTP server
 -SMTPserver		smtp.@DOMAIN@ 25
-+#SMTPserver		smtp.@DOMAIN@ 25
-+#SMTPserver		smtp.your.domain.pl 25
++SMTPserver		smtp.example.com 25
  
  # if specified, OfflineMailer will immediately resend a message to this server
  # without queueing. This may be the same as or different from the SMTPserver
  # setting above.
 -#RelayTo			smtp.@DOMAIN@	25
-+#RelayTo		smtp.@DOMAIN@	25
-+#RelayTo		smtp.your.domain.pl 25
++#RelayTo			smtp.example.com	25
  
  # mail sent to these hostnames is considered to be local mail and is
  # delivered using the MTA specified below.
 -Local			localhost @HOSTNAME@ @HOSTNAME@.@DOMAIN@
-+#Local			localhost @HOSTNAME@ @HOSTNAME@.@DOMAIN@
-+#Local			localhost HOSTNAME HOSTNAME.your.domain
-+Local			localhost
++Local			localhost hostname hostname.example.com
  
  # the hosts/IP addresses we relay for
- #RelayFor		foo.@DOMAIN@ bar.@DOMAIN@
+-#RelayFor		foo.@DOMAIN@ bar.@DOMAIN@
++#RelayFor		foo.example.com bar.example.com
+ 
+ # mail addressed to a local host is handled by this program
+ LocalMTA		"/usr/bin/procmail -d %!"
