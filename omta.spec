@@ -65,7 +65,7 @@ OMTA ma nastêpuj±ce cechy:
 
 %build
 rm -f missing
-gettextize --copy --force
+%{__gettextize}
 aclocal
 autoheader
 %{__autoconf}
