@@ -10,6 +10,7 @@ Group(pl):	Sieciowe/Serwery
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-config.patch
+Patch2:		%{name}-omta.conf_path.patch
 URL:		http://omta.runlevel.net
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -18,7 +19,7 @@ Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
-%define		_sysconfdir	/etc
+%define		_sysconfdir	/etc/mail
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
@@ -52,6 +53,7 @@ OMTA ma nastêpuj±ce cechy:
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
