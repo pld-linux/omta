@@ -5,8 +5,6 @@ Version:	0.51
 Release:	8
 License:	GPL
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-config.patch
