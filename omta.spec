@@ -9,7 +9,7 @@ Group(pl):	Sieciowe/Serwery
 Vendor:		Wouter Coene <wottie@dds.nl>
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
-URL:		http://huizen.dds.nl/~wottie/omta/
+URL:		http://omta.runlevel.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 Provides:	smtpdaemon
