@@ -10,7 +10,7 @@ Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-omta.conf_path.patch
 Patch3:		%{name}-configure.patch
-URL:		http://omta.runlevel.net
+URL:		http://omta.runlevel.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
@@ -59,16 +59,17 @@ OMTA ma nastêpuj±ce cechy:
 - Zbudowany w oparciu o zasadê K.I.S.S ("Keep It Simple, Stupid!")
 
 %package smtp
-Summary:    Omta smtp local server
-Summary(pl):    Lokalny serwer smtp omta
+Summary:	Omta SMTP local server
+Summary(pl):	Lokalny serwer SMTP omta
 Group:		Networking/Daemons
-Requires: rc-inetd
+Requires:	%{name} = %{version}
+Requires:	rc-inetd
 
 %description smtp
 Setup tcp/25 on localhost with omta-smtp.
 
 %description smtp -l pl
-W³±cz omta-smtp na porce tcp/25 dla tej maszyny.
+Pakiet w³±czaj±cy omta-smtp na porcie tcp/25 dla tej maszyny.
 
 %prep -q
 %setup -q
@@ -130,6 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
 
-%files -p smtp
+%files smtp
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/in.smtpd
-%attr(755,root,root) %{_sysconfdir}/sysconfig/rc-inetd/smtpd
+%attr(640,root,root) %{_sysconfdir}/sysconfig/rc-inetd/smtpd
