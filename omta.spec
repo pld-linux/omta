@@ -13,9 +13,8 @@ Patch1:		%{name}-config.patch
 Patch2:		%{name}-%{name}.conf_path.patch
 Patch3:		%{name}-configure.patch
 URL:		http://omta.runlevel.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	gettext-devel
 Provides:	smtpdaemon
 Obsoletes:	smtpdaemon
 Obsoletes:	exim
@@ -80,8 +79,6 @@ Pakiet w³±czaj±cy omta-smtp na porcie tcp/25 dla tej maszyny.
 %patch3 -p1
 
 %build
-rm -f {,libgetconf/}missing
-%{__gettextize}
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
@@ -99,7 +96,8 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}/{mail,sysconfig/rc-inetd}}
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
