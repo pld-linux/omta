@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
@@ -15,6 +15,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 Provides:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_spooldir	/var/spool/omtaqueue
+
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
@@ -44,7 +47,7 @@ OMTA ma nastêpuj±ce cechy:
   w³±czaj±c w to adresy From
 - Zbudowany w oparciu o zasadê K.I.S.S ("Keep It Simple, Stupid!")
 
-%prep
+%prep -q
 %setup -q
 %patch0 -p1
 
@@ -55,12 +58,13 @@ aclocal
 autoconf
 automake -a -c
 autoheader
-%configure
+%configure \
+	--with-queuepath=%{_spooldir}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/var/omta/queue,%{_libdir},%{_sbindir}}
+install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir}}
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
@@ -80,5 +84,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
-%dir %attr(770,root,mail) /var/omta/queue
+%dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
