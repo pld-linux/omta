@@ -5,18 +5,20 @@ Version:	0.51
 Release:	4
 License:	GPL
 Group:		Networking/Daemons
+Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
-Vendor:		Wouter Coene <wottie@dds.nl>
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
-URL:		http://omta.runlevel.net/
+Patch1:		%{name}-config.patch
+URL:		http://omta.runlevel.net
 BuildRequires:	autoconf
 BuildRequires:	automake
 Provides:	smtpdaemon
-Obsoletes:      smtpdaemon
+Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
+%define		_sysconfdir	/etc
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
@@ -49,6 +51,7 @@ OMTA ma nastêpuj±ce cechy:
 %prep -q
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
@@ -63,20 +66,22 @@ aclocal
 autoconf
 automake -a -c)
 %configure \
-	--with-queuepath=%{_spooldir}
+	--sysconfdir=%{_sysconfdir} \
+	--with-queuepath=%{_spooldir} \
+	--enable-setuid=mail
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir}}
+install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}}
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
-mv omta.conf.dist omta.conf
+mv omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/omta.conf
 
-gzip -9nf FAQ README AUTHORS CHANGES omta.conf
+gzip -9nf FAQ README AUTHORS CHANGES
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,5 +93,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
+%attr(644,root,root) %config(noreplace) %{_sysconfdir}/omta.conf
 %dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
