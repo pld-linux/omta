@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	5
+Release:	6
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -18,7 +18,7 @@ Obsoletes:	smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
-%define		_sysconfdir	/etc/mail
+%define		_sysconfdir	/etc
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
