@@ -67,8 +67,7 @@ autoconf
 automake -a -c)
 %configure \
 	--sysconfdir=%{_sysconfdir} \
-	--with-queuepath=%{_spooldir} \
-	--enable-setuid=mail
+	--with-queuepath=%{_spooldir}
 %{__make}
 
 %install
