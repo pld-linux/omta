@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Daemons
 Group(pl):	Sieciowe/Serwery
@@ -17,7 +17,6 @@ Obsoletes:      smtpdaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
-
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
@@ -52,12 +51,17 @@ OMTA ma nastêpuj±ce cechy:
 %patch0 -p1
 
 %build
-rm missing
+rm -f missing
 gettextize --copy --force
 aclocal
+autoheader
 autoconf
 automake -a -c
-autoheader
+(cd libgetconf
+rm -f missing
+aclocal
+autoconf
+automake -a -c)
 %configure \
 	--with-queuepath=%{_spooldir}
 %{__make}
