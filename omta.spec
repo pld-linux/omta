@@ -6,9 +6,10 @@ Release:	10
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
+Source1:	%{name}.inetd
 Patch0:		%{name}-FHS.patch
 Patch1:		%{name}-config.patch
-Patch2:		%{name}-omta.conf_path.patch
+Patch2:		%{name}-%{name}.conf_path.patch
 Patch3:		%{name}-configure.patch
 URL:		http://omta.runlevel.net/
 BuildRequires:	autoconf
@@ -28,7 +29,6 @@ Obsoletes:	zmailer
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_spooldir	/var/spool/omtaqueue
-%define		_sysconfdir	/etc/mail
 
 %description
 OMTA is an SMTP server tool wich allows people who have a dialup
@@ -96,25 +96,16 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}}
+install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}/{mail,sysconfig/rc-inetd}}
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/in.smtpd
-mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/omta.conf
+mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/mail/omta.conf
 
-cat > $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/rc-inetd/smtpd << EOF
-SERVICE_NAME=smtp
-SOCK_TYPE=stream
-PROTOCOL=tcp
-PORT=25
-FLAGS=nowait
-USER=root
-SERVER=tcpd
-DAEMON=/usr/sbin/in.smtpd
-EOF
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/rc-inetd/smtpd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -127,11 +118,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
 %dir %{_sysconfdir}
-%attr(644,root,root) %config(noreplace) %{_sysconfdir}/omta.conf
+%attr(644,root,root) %config(noreplace) %{_sysconfdir}/mail/omta.conf
 %dir %attr(770,root,mail) %{_spooldir}
 %{_mandir}/man*/*
 
 %files smtp
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/in.smtpd
-%attr(640,root,root) %{_sysconfdir}/sysconfig/rc-inetd/smtpd
+%attr(644,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/rc-inetd/smtpd
