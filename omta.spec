@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	10
+Release:	11
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
@@ -16,7 +16,7 @@ URL:		http://omta.runlevel.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 Provides:	smtpdaemon
-Obsoletes:	smtpdaemon
+Obsoletes:	courier
 Obsoletes:	exim
 Obsoletes:	masqmail
 Obsoletes:	postfix
@@ -25,6 +25,7 @@ Obsoletes:	sendmail
 Obsoletes:	sendmail-cf
 Obsoletes:	sendmail-doc
 Obsoletes:	smail
+Obsoletes:	smtpdaemon
 Obsoletes:	zmailer
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
