@@ -10,6 +10,7 @@ Vendor:		Wouter Coene <wottie@dds.nl>
 Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
 Patch0:		%{name}-FHS.patch
 URL:		http://huizen.dds.nl/~wottie/omta/
+Requires:	procmail
 BuildRequires:	autoconf
 BuildRequires:	automake
 Provides:	smtpdaemon
@@ -48,20 +49,23 @@ OMTA ma nastêpuj±ce cechy:
 %patch0 -p1
 
 %build
+rm missing
+gettextize --copy --force
 aclocal
 autoconf
-automake
+automake -a -c
 autoheader
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/var/omta/queue,%{_libdir}}
+install -d $RPM_BUILD_ROOT{/var/omta/queue,%{_libdir},%{_sbindir}}
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
+ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
 mv omta.conf.dist omta.conf
 
 gzip -9nf FAQ README AUTHORS CHANGES omta.conf
@@ -75,5 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(2755,root,mail) %{_bindir}/omta
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_libdir}/sendmail
+%attr(755,root,root) %{_sbindir}/sendmail
 %dir %attr(770,root,mail) /var/omta/queue
 %{_mandir}/man*/*
