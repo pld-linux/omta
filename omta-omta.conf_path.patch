@@ -1,0 +1,11 @@
+--- omta-0.51/src/readconf.h~	Wed Apr  5 17:34:50 2000
++++ omta-0.51/src/readconf.h	Sun Sep 16 13:53:19 2001
+@@ -20,7 +20,7 @@
+ #ifndef READCONF_H_
+ #define READCONF_H_ 1
+ 
+-#define CONFIG_GLOBAL			"/etc/omta.conf"
++#define CONFIG_GLOBAL			"/etc/mail/omta.conf"
+ #define CONFIG_LOCAL			".omtarc"
+ 
+ #define HEADER_PREPEND			20
