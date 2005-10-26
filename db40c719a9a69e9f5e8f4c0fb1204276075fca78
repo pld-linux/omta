@@ -1,0 +1,4 @@
+- spec adapterized,
+- added missing %attr() in %diles,
+- removed %(_bindir)/sendmaile (it is not neccessary) link,
+- added autoconf, automake to BuildRequires.
