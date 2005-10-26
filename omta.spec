@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	13
+Release:	14
 License:	GPL
 Group:		Networking/Daemons
 #Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
@@ -99,7 +99,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}/{mail,sysconfig/rc-inetd}}
+install -d $RPM_BUILD_ROOT{%{_spooldir},%{_prefix}/lib,%{_sbindir},%{_sysconfdir}/{mail,sysconfig/rc-inetd}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
