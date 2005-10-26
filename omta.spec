@@ -2,7 +2,7 @@ Summary:	Small queueing SMTP relayer
 Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
 Name:		omta
 Version:	0.51
-Release:	12
+Release:	13
 License:	GPL
 Group:		Networking/Daemons
 #Source0:	ftp://omta.runlevel.net/pub/omta/%{name}-%{version}.tar.gz
@@ -104,7 +104,7 @@ install -d $RPM_BUILD_ROOT{%{_spooldir},%{_libdir},%{_sbindir},%{_sysconfdir}/{m
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_libdir}/sendmail
+ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_prefix}/lib/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/in.smtpd
 mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/mail/omta.conf
@@ -121,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/mail
 %attr(2755,root,mail) %{_bindir}/omta
 %attr(755,root,root) %{_bindir}/mailq
-%attr(755,root,root) %{_libdir}/sendmail
+%attr(755,root,root) %{_prefix}/lib/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
 %attr(644,root,root) %config(noreplace) %{_sysconfdir}/mail/omta.conf
 %{_mandir}/man*/*
@@ -129,4 +129,4 @@ rm -rf $RPM_BUILD_ROOT
 %files smtp
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/in.smtpd
-%attr(644,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/rc-inetd/smtpd
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/smtpd
