@@ -123,10 +123,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_prefix}/lib/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
-%attr(644,root,root) %config(noreplace) %{_sysconfdir}/mail/omta.conf
+%config(noreplace) %{_sysconfdir}/mail/omta.conf
 %{_mandir}/man*/*
 
 %files smtp
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/in.smtpd
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/smtpd
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/smtpd
