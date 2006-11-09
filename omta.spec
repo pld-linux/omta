@@ -67,7 +67,7 @@ OMTA ma nastêpuj±ce cechy:
 Summary:	Omta SMTP local server
 Summary(pl):	Lokalny serwer SMTP omta
 Group:		Networking/Daemons
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
 
 %description smtp
