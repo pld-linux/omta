@@ -1,5 +1,5 @@
 Summary:	Small queueing SMTP relayer
-Summary(pl):	Ma³y agent SMTP relay kolejkuj±cy pocztê
+Summary(pl.UTF-8):   MaÅ‚y agent SMTP relay kolejkujÄ…cy pocztÄ™
 Name:		omta
 Version:	0.51
 Release:	14
@@ -49,23 +49,23 @@ OMTA has the following features:
   From address.
 - Built around the K.I.S.S. principle ("Keep It Simple, Stupid!")
 
-%description -l pl
-OMTA jest narzêdziem SMTP który umo¿liwia ludziom bez sta³ego dostêpu
-do sieci kolejkowaæ pocztê na dysku i wysy³aæ j± do swojego serwera
-SMTP kiedy tylko s± online.
+%description -l pl.UTF-8
+OMTA jest narzÄ™dziem SMTP ktÃ³ry umoÅ¼liwia ludziom bez staÅ‚ego dostÄ™pu
+do sieci kolejkowaÄ‡ pocztÄ™ na dysku i wysyÅ‚aÄ‡ jÄ… do swojego serwera
+SMTP kiedy tylko sÄ… online.
 
-OMTA ma nastêpuj±ce cechy:
-- Pracuje "przezroczy¶cie", udaj±c SENDMAILa
-- Mo¿e przesy³aæ listy do innego serwera SMTP
-- Mo¿e te¿ dostarczaæ lokalnie pocztê (przez procmaila lub podobne)
+OMTA ma nastÄ™pujÄ…ce cechy:
+- Pracuje "przezroczyÅ›cie", udajÄ…c SENDMAILa
+- MoÅ¼e przesyÅ‚aÄ‡ listy do innego serwera SMTP
+- MoÅ¼e teÅ¼ dostarczaÄ‡ lokalnie pocztÄ™ (przez procmaila lub podobne)
 - Ma wbudowany serwer SMTP dla lokalnej maszyny
-- U¿ytkownicy mog± (bezpiecznie!) ustawiaæ ich w³asn± konfiguracjê,
-  w³±czaj±c w to adresy From
-- Zbudowany w oparciu o zasadê K.I.S.S ("Keep It Simple, Stupid!")
+- UÅ¼ytkownicy mogÄ… (bezpiecznie!) ustawiaÄ‡ ich wÅ‚asnÄ… konfiguracjÄ™,
+  wÅ‚Ä…czajÄ…c w to adresy From
+- Zbudowany w oparciu o zasadÄ™ K.I.S.S ("Keep It Simple, Stupid!")
 
 %package smtp
 Summary:	Omta SMTP local server
-Summary(pl):	Lokalny serwer SMTP omta
+Summary(pl.UTF-8):   Lokalny serwer SMTP omta
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
@@ -73,8 +73,8 @@ Requires:	rc-inetd
 %description smtp
 Setup tcp/25 on localhost with omta-smtp.
 
-%description smtp -l pl
-Pakiet w³±czaj±cy omta-smtp na porcie tcp/25 dla tej maszyny.
+%description smtp -l pl.UTF-8
+Pakiet wÅ‚Ä…czajÄ…cy omta-smtp na porcie tcp/25 dla tej maszyny.
 
 %prep
 %setup -q
