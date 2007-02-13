@@ -1,5 +1,5 @@
 Summary:	Small queueing SMTP relayer
-Summary(pl.UTF-8):   Mały agent SMTP relay kolejkujący pocztę
+Summary(pl.UTF-8):	Mały agent SMTP relay kolejkujący pocztę
 Name:		omta
 Version:	0.51
 Release:	14
@@ -65,7 +65,7 @@ OMTA ma następujące cechy:
 
 %package smtp
 Summary:	Omta SMTP local server
-Summary(pl.UTF-8):   Lokalny serwer SMTP omta
+Summary(pl.UTF-8):	Lokalny serwer SMTP omta
 Group:		Networking/Daemons
 Requires:	%{name} = %{version}-%{release}
 Requires:	rc-inetd
