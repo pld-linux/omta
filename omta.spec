@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mailq
 %attr(755,root,root) %{_prefix}/lib/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
-%config(noreplace) %{_sysconfdir}/mail/omta.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/mail/omta.conf
 %{_mandir}/man*/*
 
 %files smtp
