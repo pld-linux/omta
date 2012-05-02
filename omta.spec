@@ -87,12 +87,12 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_spooldir},%{_prefix}/lib,%{_sbindir},%{_sysconfdir}/{mail,sysconfig/rc-inetd}}
+install -d $RPM_BUILD_ROOT{%{_spooldir},/usr/lib,%{_sbindir},%{_sysconfdir}/{mail,sysconfig/rc-inetd}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_prefix}/lib/sendmail
+ln -sf %{_bindir}/omta $RPM_BUILD_ROOT/usr/lib/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/sendmail
 ln -sf %{_bindir}/omta $RPM_BUILD_ROOT%{_sbindir}/in.smtpd
 mv -f omta.conf.dist $RPM_BUILD_ROOT%{_sysconfdir}/mail/omta.conf
@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/mail
 %attr(2755,root,mail) %{_bindir}/omta
 %attr(755,root,root) %{_bindir}/mailq
-%attr(755,root,root) %{_prefix}/lib/sendmail
+%attr(755,root,root) /usr/lib/sendmail
 %attr(755,root,root) %{_sbindir}/sendmail
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/mail/omta.conf
 %{_mandir}/man*/*
